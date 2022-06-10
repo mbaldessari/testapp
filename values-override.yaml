@@ -1,0 +1,12 @@
+clusterGroup:
+  test: 111
+
+  foo:
+    bandini1: 123
+    baz: 234
+    bandini2: 456
+    jobs:
+      - name: foo
+        playbook: foo.yml
+      - name: bar
+        playbook: bar.yml

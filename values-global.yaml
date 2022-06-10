@@ -1,0 +1,11 @@
+---
+global:
+  pattern: testapp
+
+  options:
+    useCSV: false
+    syncPolicy: Automatic
+    installPlanApproval: Automatic
+
+main:
+  clusterGroupName: hub

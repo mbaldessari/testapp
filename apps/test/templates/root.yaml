@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: testapp
+  namespace: default
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    name: in-cluster
+    namespace: default
+  project: testapp
+  source:
+    helm:
+      parameters:
+      - name: global.repoURL
+        value: $ARGOCD_APP_SOURCE_REPO_URL
+      - name: global.targetRevision
+        value: $ARGOCD_APP_SOURCE_TARGET_REVISION
+      - name: global.namespace
+        value: $ARGOCD_APP_NAMESPACE
+      - name: global.pattern
+        value: testapp
+      - name: global.valuesDirectoryURL
+        value: https://github.com/mbaldessari/testapp/raw/main
+      - name: global.hubClusterDomain
+        value: apps.bandini-dc.blueprints.rhecoeng.com
+      - name: global.localClusterDomain
+        value: apps.bandini-dc.blueprints.rhecoeng.com
+      valueFiles:
+      - https://github.com/mbaldessari/testapp/raw/testathing/values-global.yaml
+      - https://github.com/mbaldessari/testapp/raw/testathing/values-override.yaml
+    path: common/acm
+    repoURL: https://github.com/mbaldessari/testapp.git
+    targetRevision: testathing
+    path: apps/
+    repoURL: https://github.com/mbaldessari/testapp.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
