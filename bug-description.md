@@ -3,12 +3,7 @@
 ## (A) Install OCP 4.10.15
 
 Go to OperatorHub and install Red Hat Openshift Gitops (currently at v1.5.2)
-Leave default (namespace to openshift-operators). Login via the argocd cli
-as it makes things easier:
-```
-argocd login $(oc get routes -n openshift-gitops openshift-gitops-server -o=jsonpath='{ .spec.host }') --sso
-```
-
+Leave default (namespace to openshift-operators).
 ## (B) Test argocd from git upstream v2.4.0-rc5+b84dd8b
 
 Git clone https://github.com/mbaldessari/argocd-operator/tree/2.4.0-rc5 which will install
@@ -27,6 +22,11 @@ oc apply -f templates/argocd-basic.yaml
 # Testing protocol
 
 The following testing protocol reproduces the issue on both (A) OCP + gitops 1.5.2 *and* (B) OCP + ArgoCDv2.4.0-rc5+b84dd8b
+
+Login via the argocd cli as it makes things easier:
+```
+argocd login $(oc get routes -n openshift-gitops openshift-gitops-server -o=jsonpath='{ .spec.host }') --sso
+```
 
 ```
 $ oc apply -f apps/test/templates/project.yaml
