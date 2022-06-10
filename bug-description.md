@@ -1,5 +1,16 @@
 # Refresh / sync with helm oddity
 
+Problem description:
+
+In a helm chart managed by argo, sometimes when you change the values file, the changes
+are not reflected on to the cluster, until a hard-refresh is forced.
+
+This seems the same as https://github.com/argoproj/argo-cd/issues/9214 "argocd
+application do not update when values file changed in helm repo"
+
+I can reproduce this issue both with Red Hat OpenShift GitOps (1.5.2)(A) and
+with argo v2.4.0-rc5 (B)
+
 ## (A) Install OCP 4.10.15
 
 Go to OperatorHub and install Red Hat Openshift Gitops (currently at v1.5.2)
@@ -120,7 +131,3 @@ Looking at the definition of refresh vs hard-refresh:
 * Hard Refresh: Argo CD caches the manifests and a hard refresh will invalidate this cache.
 
 So it seems to me that somehow this is a cache invalidation problem of sorts.
-
-## Similar reports
-
-* https://github.com/argoproj/argo-cd/issues/9214 - argocd application do not update when values file changed in helm repo
