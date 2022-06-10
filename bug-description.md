@@ -1,4 +1,6 @@
-Install OCP 4.10.15
+# Test with OCP + Openshift GitOps
+
+## (A) Install OCP 4.10.15
 
 Go to OperatorHub and install Red Hat Openshift Gitops (currently at v1.5.2)
 Leave default (namespace to openshift-operators). Login via the argocd cli
@@ -7,6 +9,24 @@ as it makes things easier:
 argocd login $(oc get routes -n openshift-gitops openshift-gitops-server -o=jsonpath='{ .spec.host }') --sso
 ```
 
+## (B) Test argocd from git upstream v2.4.0-rc5+b84dd8b
+
+Git clone https://github.com/mbaldessari/argocd-operator/tree/2.4.0-rc5 which will install
+one of the latest argocd containers.
+
+Set KUBECONFIG and Hop in the `argocd-operator` folder and run:
+```
+IMAGE_TAG_BASE=quay.io/rhn_support_mbaldess/argocd-operator VERSION=0.6.6 IMG=quay.io/rhn_support_mbaldess/argocd-operator:"${VERSION}" CHANNELS=fast make generate bundle docker-build docker-push bundle deploy
+```
+
+This will install the operator on our cluster. Then run:
+```
+oc apply -f templates/argocd-basic.yaml
+```
+
+# Testing protocol
+
+The following testing protocol reproduces the issue on both (A) OCP + gitops 1.5.2 *and* (B) OCP + ArgoCDv2.4.0-rc5+b84dd8b
 
 ```
 $ oc apply -f apps/test/templates/project.yaml
