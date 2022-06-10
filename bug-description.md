@@ -15,6 +15,7 @@ with argo v2.4.0-rc5 (B)
 
 Go to OperatorHub and install Red Hat Openshift Gitops (currently at v1.5.2)
 Leave default (namespace to openshift-operators).
+
 ## (B) Test argocd from git upstream v2.4.0-rc5+b84dd8b
 
 Git clone https://github.com/mbaldessari/argocd-operator/tree/2.4.0-rc5 which will install
