@@ -83,4 +83,5 @@ manifest (but never in the configmap):
   clusterGroup.foo.bandini4: 0
 
 Now the interesting part seems to be that a `argocd app get test --hard-refresh` will fix things
-and the configmap will now contain the expected bandini4 key.
+and the configmap will now contain the expected bandini4 key. At this point it seems no change
+will ever be reflected on the configmap in k8s, unless I hard-refresh via the CLI.
