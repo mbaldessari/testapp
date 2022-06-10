@@ -1,0 +1,9 @@
+{{- $valuesyaml := toYaml $.Values -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-test
+  namespace: multicloud-gitops-hub
+data:
+  values.yaml: |
+{{ tpl $valuesyaml . | indent 4 }}
