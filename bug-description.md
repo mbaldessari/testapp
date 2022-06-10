@@ -120,3 +120,7 @@ Looking at the definition of refresh vs hard-refresh:
 * Hard Refresh: Argo CD caches the manifests and a hard refresh will invalidate this cache.
 
 So it seems to me that somehow this is a cache invalidation problem of sorts.
+
+## Similar reports
+
+* https://github.com/argoproj/argo-cd/issues/9214 - argocd application do not update when values file changed in helm repo
