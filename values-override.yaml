@@ -4,6 +4,7 @@ clusterGroup:
     bandini1: 222
     bandini2: 456
     bandini3: 789
+    bandini4: 000
     baz: 234
     jobs:
       - name: foo
