@@ -1,7 +1,7 @@
 clusterGroup:
   test: 111
   foo:
-    bandini1: 123
+    bandini1: 222
     bandini2: 456
     baz: 234
     jobs:
