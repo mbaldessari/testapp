@@ -1,0 +1,8 @@
+clusterGroup:
+  test: 1
+  foo:
+    bandini1: 1
+    bandini2: 1
+    baz: 1
+    jobs: []
+
