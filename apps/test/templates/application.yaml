@@ -1,15 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: testapp
-  namespace: default
+  name: test
+  namespace: multicloud-gitops-hub
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     name: in-cluster
-    namespace: default
-  project: testapp
+    namespace: multicloud-gitops-hub
+  project: test
   source:
     helm:
       parameters:
@@ -28,12 +28,9 @@ spec:
       - name: global.localClusterDomain
         value: apps.bandini-dc.blueprints.rhecoeng.com
       valueFiles:
-      - https://github.com/mbaldessari/testapp/raw/testathing/values-global.yaml
-      - https://github.com/mbaldessari/testapp/raw/testathing/values-override.yaml
-    path: common/acm
-    repoURL: https://github.com/mbaldessari/testapp.git
-    targetRevision: testathing
-    path: apps/
+      - https://github.com/mbaldessari/testapp/raw/main/values-global.yaml
+      - https://github.com/mbaldessari/testapp/raw/main/values-override.yaml
+    path: apps/test
     repoURL: https://github.com/mbaldessari/testapp.git
     targetRevision: HEAD
   syncPolicy:
