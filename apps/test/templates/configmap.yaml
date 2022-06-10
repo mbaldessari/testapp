@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: configmap-test
-  namespace: multicloud-gitops-hub
+  namespace: openshift-gitops
 data:
   values.yaml: |
 {{ tpl $valuesyaml . | indent 4 }}
