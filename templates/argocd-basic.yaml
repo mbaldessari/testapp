@@ -1,9 +1,13 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: openshift-gitops
+---
 apiVersion: argoproj.io/v1alpha1
 kind: ArgoCD
 metadata:
   name: example-argocd
-  labels:
-    example: basic
+  namespace: openshift-gitops
 spec:
  server:
     route:
